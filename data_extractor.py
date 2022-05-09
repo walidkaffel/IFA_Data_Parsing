@@ -62,6 +62,14 @@ def exports_extraction(xfile, xsheet):
     df_export = df_export.rename(mapper={df_export.columns[-1]:'Value', df_export.columns[-2]:'Exporter'}, axis=1)
     
     df_export = df_export[df_export['Value'] > 1]
+    df_export = df_export.rename(mapper={df_export.columns[4]:'Country'}, axis=1)
+    
+    df_export['Type'] = 'Export'
+    
+    df_export = df_export[['Country', 'Type', 'Year', 'Product','Region_Importer', 'Importer', 'Value']]
+    
+    df_export = df_export.rename(mapper={df_export.columns[5]:'Partner'}, axis=1)
+    df_export = df_export.rename(mapper={df_export.columns[4]:'Region_Partner'}, axis=1)
     
     return df_export
 
